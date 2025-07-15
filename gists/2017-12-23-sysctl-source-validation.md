@@ -1,0 +1,22 @@
+When a system distracts packets when the route for outbound traffic differs from the route of incoming traffic.
+
+
+```bash
+net.ipv4.conf.default.rp_filter = 0
+net.ipv4.conf.<interface>.rp_filter = 0
+net.ipv4.conf.all.rp_filter = 0
+```
+
+### /proc
+
+```bash
+echo "0" > /proc/sys/net/ipv4/conf/default/rp_filter
+echo "0" > /proc/sys/net/ipv4/conf/<interface>/rp_filter
+echo "0" > /proc/sys/net/ipv4/conf/all/rp_filter
+```
+
+### test config
+
+```bash
+hping <target> --spoof <spoofed_source> --udp -V -p <port> -d $(wc -m payload |  awk '{print $1;}') -E payload
+```

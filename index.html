@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Nuno Gonçalves</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/xterm@5.2.1/css/xterm.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+  <script src="https://unpkg.com/xterm@5.2.1/lib/xterm.js"></script>
+  <script src="https://unpkg.com/xterm-addon-fit@0.7.0/lib/xterm-addon-fit.js"></script>
+  <script src="https://unpkg.com/xterm-addon-web-links@0.8.0/lib/xterm-addon-web-links.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/xt256.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="header">
+    <div class="ascii-container" id="asciiArt">
+███╗   ██╗██╗   ██╗███╗   ██╗ ██████╗ 
+████╗  ██║██║   ██║████╗  ██║██╔═══██╗
+██╔██╗ ██║██║   ██║██╔██╗ ██║██║   ██║
+██║╚██╗██║██║   ██║██║╚██╗██║██║   ██║
+██║ ╚████║╚██████╔╝██║ ╚████║╚██████╔╝
+╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝
+
+ ██████╗  ██████╗ ███╗   ██╗ ██████╗ █████╗ ██╗    ██╗   ██╗███████╗███████╗
+██╔════╝ ██╔═══██╗████╗  ██║██╔════╝██╔══██╗██║    ██║   ██║██╔════╝██╔════╝
+██║  ███╗██║   ██║██╔██╗ ██║██║     ███████║██║    ██║   ██║█████╗  ███████╗
+██║   ██║██║   ██║██║╚██╗██║██║     ██╔══██║██║    ╚██╗ ██╔╝██╔══╝  ╚════██║
+╚██████╔╝╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗╚████╔╝ ███████╗███████║
+ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚══██╔╝╚═╝  ╚═╝╚══════╝ ╚═══╝  ╚══════╝╚══════╝
+                                ╚═╝                         COPYRIGHT © 2025 
+    </div>
+    <h1>DevOps | Software Engineering | Automation | Security</h1>
+  </div>
+  <div id="terminal">
+  <div id="modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-nav-controls">
+          <button class="modal-nav-btn" id="prevBtn" onclick="navigatePrev()" title="Previous Post">
+            &lt;
+          </button>
+          <button class="modal-nav-btn" id="nextBtn" onclick="navigateNext()" title="Next Post">
+            &gt;
+          </button>
+        </div>
+
+        <div class="modal-title-container">
+          <h2 class="modal-title"></h2>
+        </div>
+
+        <div class="modal-utility-controls">
+          <button class="modal-copy-btn" id="copyUrlBtn" onclick="copyPermalink()" title="Copy Permalink">
+            🔗
+          </button>
+          <button class="modal-close" onclick="closeModal()"></button>
+        </div>
+      </div>
+      
+      <div class="modal-body" id="modalBody"></div>
+      
+      <div class="modal-progress-bar">
+        <div class="modal-progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
