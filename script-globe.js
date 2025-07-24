@@ -1,4 +1,4 @@
-class GlobeScene {
+class SolarSystemScene {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
 
@@ -6,8 +6,11 @@ class GlobeScene {
     this.camera = null;
     this.renderer = null;
 
-    this.globeGroup = null;
-    this.globe = null;
+    this.sunGroup = null;
+    this.sun = null;
+
+    this.earth = null;
+    this.earthOrbitGroup = null;
 
     this.moon = null;
     this.moonOrbitGroup = null;
@@ -16,12 +19,13 @@ class GlobeScene {
     this.grid = null;
 
     this.animationPaused = false;
-    this.globeRotationSpeed = 0.0005;
-    this.moonOrbitSpeed = 0.0002;
+    this.sunRotationSpeed = 0.0005;
+    this.earthOrbitSpeed = 0.0002;
+    this.moonOrbitSpeed = 0.0006;
     this.satelliteSpeedMultiplier = 1;
 
     // FPS limiting variables
-    this.targetFPS = 30;
+    this.targetFPS = 120;
     this.frameInterval = 1000 / this.targetFPS;
     this.lastFrameTime = 0;
     this.deltaTime = 0;
@@ -30,18 +34,21 @@ class GlobeScene {
     this.lastTime = performance.now();
     this.frameCount = 0;
     this.fps = 0;
-    this.fpsUpdateInterval = 1000; // Update FPS counter every second
+    this.fpsUpdateInterval = 1000;
     this.lastFPSUpdate = 0;
 
     // Store zoom level as instance property for consistency
-    this.zoomLevel = 15;
+    this.zoomLevel = 10;
 
     this.config = {
-      globeRadius: 8,
-      globePoints: 10000,
-      moonRadius: 2,
-      moonPoints: 2000,
-      moonOrbitRadius: 15,
+      sunRadius: 8,
+      sunPoints: 10000,
+      earthRadius: 2,
+      earthPoints: 2000,
+      earthOrbitRadius: 15,
+      moonRadius: 0.5,
+      moonPoints: 500,
+      moonOrbitRadius: 4,
       gridSize: 40,
       gridDivisions: 50,
       earthTilt: (23.5 * Math.PI) / 180,
@@ -72,7 +79,8 @@ class GlobeScene {
 
   init() {
     this.setupScene();
-    this.createGlobe();
+    this.createSun();
+    this.createEarth();
     this.createMoon();
     this.createSatellites();
     this.setupEventListeners();
@@ -97,8 +105,8 @@ class GlobeScene {
     const cameraDistance = 20;
     this.camera.position.set(cameraDistance, cameraDistance, cameraDistance);
 
-    // Look at the center of the scene (where globe is positioned)
-    this.camera.lookAt(0, 2, 0); // Globe is at y=2
+    // Look at the center of the scene (where sun is positioned)
+    this.camera.lookAt(0, 2, 0); // Sun is at y=2
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -115,19 +123,19 @@ class GlobeScene {
     this.container.appendChild(this.renderer.domElement);
   }
 
-  createGlobe() {
+  createSun() {
     const geometry = new THREE.BufferGeometry();
-    const vertices = new Float32Array(this.config.globePoints * 3);
+    const vertices = new Float32Array(this.config.sunPoints * 3);
 
-    for (let i = 0; i < this.config.globePoints; i++) {
+    for (let i = 0; i < this.config.sunPoints; i++) {
       const theta = Math.random() * 2 * Math.PI;
       const phi = Math.acos(2 * Math.random() - 1);
 
       const idx = i * 3;
-      vertices[idx] = this.config.globeRadius * Math.sin(phi) * Math.cos(theta);
+      vertices[idx] = this.config.sunRadius * Math.sin(phi) * Math.cos(theta);
       vertices[idx + 1] =
-        this.config.globeRadius * Math.sin(phi) * Math.sin(theta);
-      vertices[idx + 2] = this.config.globeRadius * Math.cos(phi);
+        this.config.sunRadius * Math.sin(phi) * Math.sin(theta);
+      vertices[idx + 2] = this.config.sunRadius * Math.cos(phi);
     }
 
     geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
@@ -136,21 +144,66 @@ class GlobeScene {
     geometry.computeBoundingSphere();
 
     const material = new THREE.PointsMaterial({
-      color: 0x00ff00,
-      size: 0.15,
+      color: 0xffa500, 
+      size: 0.2,
       sizeAttenuation: true,
+      transparent: false,
     });
 
-    this.globe = new THREE.Points(geometry, material);
-    this.globe.position.y = 2;
+    this.sun = new THREE.Points(geometry, material);
+    this.sun.position.y = 2;
 
     // Enable frustum culling
-    this.globe.frustumCulled = true;
+    this.sun.frustumCulled = true;
 
-    this.globeGroup = new THREE.Group();
-    this.globeGroup.add(this.globe);
-    this.globeGroup.rotation.z = this.config.earthTilt;
-    this.scene.add(this.globeGroup);
+    this.sunGroup = new THREE.Group();
+    this.sunGroup.add(this.sun);
+    this.scene.add(this.sunGroup);
+  }
+
+  createEarth() {
+    const geometry = new THREE.BufferGeometry();
+    const vertices = new Float32Array(this.config.earthPoints * 3);
+
+    for (let i = 0; i < this.config.earthPoints; i++) {
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.acos(2 * Math.random() - 1);
+
+      const idx = i * 3;
+      vertices[idx] = this.config.earthRadius * Math.sin(phi) * Math.cos(theta);
+      vertices[idx + 1] =
+        this.config.earthRadius * Math.sin(phi) * Math.sin(theta);
+      vertices[idx + 2] = this.config.earthRadius * Math.cos(phi);
+    }
+
+    geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
+
+    // Optimize geometry
+    geometry.computeBoundingSphere();
+
+    const material = new THREE.PointsMaterial({ 
+      color: 0x00ff00, 
+      size: 0.15,
+      sizeAttenuation: true,
+      blending: THREE.AdditiveBlending,
+      transparent: false,
+      opacity: 0.9, 
+    });
+
+    this.earth = new THREE.Points(geometry, material);
+    this.earth.frustumCulled = true;
+
+    // Add Earth's axial tilt
+    const earthGroup = new THREE.Group();
+    earthGroup.rotation.z = this.config.earthTilt;
+    earthGroup.add(this.earth);
+
+    this.earthOrbitGroup = new THREE.Group();
+    earthGroup.position.set(this.config.earthOrbitRadius, 3, 0);
+    this.earthOrbitGroup.add(earthGroup);
+    this.scene.add(this.earthOrbitGroup);
+
+    this.createEarthOrbitLine();
   }
 
   createMoon() {
@@ -169,33 +222,43 @@ class GlobeScene {
     }
 
     geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-
-    // Optimize geometry
     geometry.computeBoundingSphere();
 
-    const material = new THREE.PointsMaterial({ color: 0x00ff00, size: 0.1 });
+    const material = new THREE.PointsMaterial({
+      color: 0xffffff, // White color
+      size: 0.1,
+      sizeAttenuation: true,
+      // blending: THREE.AdditiveBlending, // Commented out - removes glow
+      transparent: false,
+      // opacity: 0.9, // Not needed when transparent is false
+    });
 
     this.moon = new THREE.Points(geometry, material);
     this.moon.frustumCulled = true;
 
+    // Create moon orbit group with slight inclination
     this.moonOrbitGroup = new THREE.Group();
-    this.moon.position.set(this.config.moonOrbitRadius, 3, 0);
+    this.moonOrbitGroup.rotation.z = (5 * Math.PI) / 180; // 5-degree inclination
+    
+    this.moon.position.set(this.config.moonOrbitRadius, 0, 0);
     this.moonOrbitGroup.add(this.moon);
-    this.scene.add(this.moonOrbitGroup);
+    
+    // Add moon orbit to Earth (not to Earth's orbit group)
+    this.earthOrbitGroup.children[0].add(this.moonOrbitGroup);
 
     this.createMoonOrbitLine();
   }
 
-  createMoonOrbitLine() {
+  createEarthOrbitLine() {
     const geometry = new THREE.BufferGeometry();
     const points = new Float32Array(303); // 101 points * 3 coordinates
 
     for (let i = 0; i <= 100; i++) {
       const angle = (i / 100) * Math.PI * 2;
       const idx = i * 3;
-      points[idx] = this.config.moonOrbitRadius * Math.cos(angle);
+      points[idx] = this.config.earthOrbitRadius * Math.cos(angle);
       points[idx + 1] = 3;
-      points[idx + 2] = this.config.moonOrbitRadius * Math.sin(angle);
+      points[idx + 2] = this.config.earthOrbitRadius * Math.sin(angle);
     }
 
     geometry.setAttribute("position", new THREE.BufferAttribute(points, 3));
@@ -204,7 +267,7 @@ class GlobeScene {
     geometry.computeBoundingSphere();
 
     const material = new THREE.LineBasicMaterial({
-      color: 0x00ff00,
+      color: 0x00ff00, // Green color for Earth's orbit
       opacity: 0.3,
       transparent: true,
     });
@@ -213,9 +276,39 @@ class GlobeScene {
     this.scene.add(line);
   }
 
+  createMoonOrbitLine() {
+    const orbitPoints = 100;
+    const points = [];
+
+    for (let i = 0; i <= orbitPoints; i++) {
+      const angle = (i / orbitPoints) * Math.PI * 2;
+      const x = this.config.moonOrbitRadius * Math.cos(angle);
+      const z = this.config.moonOrbitRadius * Math.sin(angle);
+      const y = 0;
+
+      points.push(x, y, z);
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(points, 3)
+    );
+
+    const material = new THREE.LineBasicMaterial({
+      color: 0xffffff, // White color for Moon's orbit
+      opacity: 0.5,
+      transparent: true,
+      linewidth: 1,
+    });
+
+    const orbitLine = new THREE.Line(geometry, material);
+    this.moonOrbitGroup.add(orbitLine);
+  }
+
   createSatellites() {
     // Create a single geometry and material to reuse
-    const geometry = new THREE.SphereGeometry(0.06, 6, 6);
+    const geometry = new THREE.SphereGeometry(0.04, 6, 6);
     geometry.computeBoundingSphere();
 
     this.config.satelliteConfigs.forEach((cfg, index) => {
@@ -245,10 +338,15 @@ class GlobeScene {
   }
 
   setupLighting() {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
     directionalLight.position.set(10, 10, 10);
-    this.scene.add(ambientLight, directionalLight);
+    
+    // Add point light at sun position for more realistic lighting
+    const sunLight = new THREE.PointLight(0xffa500, 2, 100);
+    sunLight.position.set(0, 2, 0);
+    
+    this.scene.add(ambientLight, directionalLight, sunLight);
   }
 
   animateSatellites(deltaMultiplier) {
@@ -277,9 +375,10 @@ class GlobeScene {
       const deltaMultiplier = this.deltaTime / 16.67; // Normalize to 60fps baseline
 
       if (!this.animationPaused) {
-        this.globeGroup.rotation.y += this.globeRotationSpeed * deltaMultiplier;
+        this.sunGroup.rotation.y += this.sunRotationSpeed * deltaMultiplier;
+        this.earthOrbitGroup.rotation.y += this.earthOrbitSpeed * deltaMultiplier;
+        this.earthOrbitGroup.children[0].children[0].rotation.y += 0.001 * deltaMultiplier; // Earth rotation
         this.moonOrbitGroup.rotation.y += this.moonOrbitSpeed * deltaMultiplier;
-        this.moon.rotation.y += 0.001 * deltaMultiplier;
         this.animateSatellites(deltaMultiplier);
       }
 
@@ -319,12 +418,12 @@ class GlobeScene {
   resetView() {
     const cameraDistance = 20;
     this.camera.position.set(cameraDistance, cameraDistance, cameraDistance);
-    this.camera.lookAt(0, 2, 0); // Look at globe center
+    this.camera.lookAt(0, 2, 0); // Look at sun center
 
     this.setZoom(15);
 
-    this.globeRotationSpeed = 0.00005;
-    this.moonOrbitSpeed = 0.00002;
+    this.sunRotationSpeed = 0.00005;
+    this.earthOrbitSpeed = 0.00002;
     this.satelliteSpeedMultiplier = 1;
     this.updateSatelliteSize(0.5);
   }
@@ -368,6 +467,6 @@ class GlobeScene {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const globe = new GlobeScene("globeContainer");
-  window.globe = globe;
+  const solarSystem = new SolarSystemScene("globeContainer");
+  window.solarSystem = solarSystem;
 });
