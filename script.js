@@ -11,13 +11,13 @@ const config = {
     fontSize: 16,
     fontFamily: "'VT323', monospace",
     theme: {
-      background: "#000000",
+      // background: "#000000",
       foreground: "#00ff00",
       cursor: "#ffffff",
       cursorAccent: "#000000",
       selection: "#ffffff",
     },
-    cursorBlink: true,
+    // cursorBlink: true,
     cursorStyle: "block",
   },
   commands: [
@@ -484,6 +484,14 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+window.addEventListener("resize", () => {
+  clearTimeout(window.fitTimeout);
+  window.fitTimeout = setTimeout(() => {
+    fitAddon.fit();
+    terminal.scrollToBottom(); 
+  }, 100);
+});
+
 document.getElementById("modal").addEventListener("click", (e) => {
   if (e.target.classList.contains("modal-overlay")) {
     closeModal();
@@ -576,3 +584,27 @@ window.onload = () => {
   initTerminal();
   setTimeout(initGlitch, 100);
 };
+
+function pad(num, length) {
+  return num.toString().padStart(length, '0');
+}
+
+function updateClock() {
+  const now = new Date();
+
+  const dd   = pad(now.getDate(), 2);
+  const MM   = pad(now.getMonth() + 1, 2);
+  const YY   = pad(now.getFullYear() % 100, 2);
+  const HH   = pad(now.getHours(), 2);
+  const mm   = pad(now.getMinutes(), 2);
+  const SS   = pad(now.getSeconds(), 2);
+  const mmm  = pad(now.getMilliseconds(), 3);
+
+  const timestamp = dd + MM + YY + HH + mm + SS + mmm;
+
+  document.getElementById('clock').textContent = timestamp;
+
+  requestAnimationFrame(updateClock);
+}
+
+updateClock();

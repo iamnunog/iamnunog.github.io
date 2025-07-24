@@ -7,17 +7,27 @@
   <title>Nuno Gonçalves</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/xterm@5.2.1/css/xterm.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
   <script src="https://unpkg.com/xterm@5.2.1/lib/xterm.js"></script>
   <script src="https://unpkg.com/xterm-addon-fit@0.7.0/lib/xterm-addon-fit.js"></script>
   <script src="https://unpkg.com/xterm-addon-web-links@0.8.0/lib/xterm-addon-web-links.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/xt256.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js" defer></script>
+  <script src="script-globe.js" defer></script>
+  <link rel="stylesheet" href="style-hljs-retro.css">
 </head>
 <body>
+  
+  <div class="screen-overlay"></div>
+  <div class="screen-overlay-glow"></div>
+  <div class="screen-overlay-burn"></div>
+  <div class="screen-overlay-vhs-tracking"></div>
+
+  <div class="container">
+  <div id="globeContainer" class="globeContainer"></div>
+  
   <div id="header">
     <div class="ascii-container" id="asciiArt">
 ███╗   ██╗██╗   ██╗███╗   ██╗ ██████╗ 
@@ -68,6 +78,8 @@
         <div class="modal-progress-fill" id="progressFill"></div>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </body>
 </html>
