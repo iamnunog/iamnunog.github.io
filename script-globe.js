@@ -418,7 +418,7 @@ class SolarSystemScene {
   resetView() {
     const cameraDistance = 20;
     this.camera.position.set(cameraDistance, cameraDistance, cameraDistance);
-    this.camera.lookAt(0, 2, 0); // Look at sun center
+    this.camera.lookAt(0, 2, 0); // look at sun center
 
     this.setZoom(15);
 
