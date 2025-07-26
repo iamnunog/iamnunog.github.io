@@ -1,0 +1,264 @@
+/* Enhanced CRT Retro Theme for Highlight.js */
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1.5em;
+    background: #0a0a0a;
+    color: #ffffff;
+    border-radius: 10px;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    position: relative;
+    box-shadow:
+        inset 0 0 30px rgba(0, 255, 0, 0.1),
+        0 0 30px rgba(0, 255, 0, 0.2);
+
+    /* CRT scanlines effect */
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 0, 0.05),
+        rgba(0, 255, 0, 0.05) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+}
+
+/* Retro Green Italics for comments */
+.hljs-comment,
+.hljs-quote {
+    color: #5f8f5f;
+    font-style: italic;
+    text-shadow: 0 0 2px #5f8f5f;
+}
+
+/* Bright Green Keywords */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-selector-id {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 2px #00ff00;
+}
+
+/* Cyan Built-ins */
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+    color: #00ffff;
+    text-shadow: 0 0 2px #00ffff;
+}
+
+/* Amber Strings */
+.hljs-string,
+.hljs-subst {
+    color: #ffb000;
+    text-shadow: 0 0 2px #ffb000;
+}
+
+/* Bright Yellow Numbers */
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-meta {
+    color: #ffff66;
+    text-shadow: 0 0 2px #ffff66;
+}
+
+/* FUNCTION NAMES AND METHOD CALLS - COMPREHENSIVE COVERAGE */
+/* This covers all the different ways functions/methods can be highlighted */
+.hljs-title.function_,
+.hljs-title.function,
+.hljs-title.function_.invoke,
+.hljs-title.function.invoke,
+.hljs-title.invoke,
+.hljs-property,
+.hljs-name {
+    color: #00ffcc !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #00ffcc;
+}
+
+/* CLASS NAMES AND TYPES - COMPREHENSIVE COVERAGE */
+/* This covers all the different ways classes/types can be highlighted */
+.hljs-title.class_,
+.hljs-title.class,
+.hljs-class,
+.hljs-type {
+    color: #ffd700 !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ffd700;
+}
+
+/* White Highlighted General Titles */
+.hljs-title {
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 0 0 2px #ffffff;
+}
+
+.hljs-title.class_.inherited__ {
+    color: #f0f0ff;
+    font-weight: bold;
+    text-shadow: 0 0 2px #f0f0ff;
+}
+
+/* Light Green for Vars and Params */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-params {
+    color: #90ff90;
+    text-shadow: 0 0 2px #90ff90;
+}
+
+/* Yellow for Doctags */
+.hljs-doctag {
+    color: #ffd700;
+    text-shadow: 0 0 2px #ffd700;
+}
+
+/* Dark Gold for HTML-ish Elements */
+.hljs-attribute,
+.hljs-tag {
+    color: #cc9900;
+    text-shadow: 0 0 2px #cc9900;
+}
+
+/* Teal Regex and Links */
+.hljs-regexp,
+.hljs-link {
+    color: #00ffcc;
+    text-shadow: 0 0 3px #00ffcc;
+}
+
+/* Soft Grey Operators and Punctuation */
+.hljs-operator,
+.hljs-punctuation {
+    color: #c0c0c0;
+    text-shadow: 0 0 1px #888;
+}
+
+/* Section titles (Green, Bold) */
+.hljs-section {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 6px #00ff00;
+}
+
+/* Additions (Green Background) */
+.hljs-addition {
+    color: #00ff00;
+    background-color: rgba(0, 64, 0, 0.3);
+}
+
+/* Deletions (Red-Orange Background) */
+.hljs-deletion {
+    color: #ff6600;
+    background-color: rgba(64, 0, 0, 0.3);
+}
+
+/* Strong and Emphasis */
+.hljs-strong {
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 0 0 3px #fff;
+}
+
+.hljs-emphasis {
+    color: #f0f0f0;
+    font-style: italic;
+}
+
+/* Miscellaneous */
+.hljs-template-tag {
+    color: #66cccc;
+}
+
+.hljs-selector-class {
+    color: #ffcc66;
+}
+
+.hljs-meta-keyword,
+.hljs-meta-string {
+    color: #66cc66;
+}
+
+.hljs-code {
+    color: #e0e0e0;
+}
+
+.hljs-formula {
+    color: #00ffff;
+}
+
+/* Shell/Bash specific overrides */
+.language-bash .hljs-meta,
+.language-shell .hljs-meta {
+    color: #ffb000;
+}
+
+.language-bash .hljs-variable,
+.language-shell .hljs-variable {
+    color: #00ffff;
+}
+
+/* LANGUAGE-SPECIFIC FUNCTION AND CLASS HIGHLIGHTING */
+
+/* Python specific */
+.language-python .hljs-title.function_,
+.language-python .hljs-title.function,
+.language-python .hljs-property,
+.language-python .hljs-name {
+    color: #00ffcc !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #00ffcc;
+}
+
+.language-python .hljs-title.class_,
+.language-python .hljs-class {
+    color: #ffd700 !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ffd700;
+}
+
+/* Go specific */
+.language-go .hljs-title.function_,
+.language-go .hljs-title.function,
+.language-go .hljs-property,
+.language-go .hljs-name {
+    color: #00ffcc !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #00ffcc;
+}
+
+.language-go .hljs-title.class_,
+.language-go .hljs-type {
+    color: #ffd700 !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ffd700;
+}
+
+/* Go package names and struct field access */
+.language-go .hljs-namespace {
+    color: #90ff90 !important;
+    text-shadow: 0 0 2px #90ff90;
+}
+
+/* JavaScript specific */
+.language-javascript .hljs-title.function_,
+.language-javascript .hljs-title.function,
+.language-javascript .hljs-property,
+.language-javascript .hljs-name {
+    color: #00ffcc !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #00ffcc;
+}
+
+.language-javascript .hljs-title.class_,
+.language-javascript .hljs-class {
+    color: #ffd700 !important;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ffd700;
+}

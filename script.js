@@ -11,13 +11,11 @@ const config = {
     fontSize: 16,
     fontFamily: "'VT323', monospace",
     theme: {
-      background: "#000000",
       foreground: "#00ff00",
       cursor: "#ffffff",
       cursorAccent: "#000000",
       selection: "#ffffff",
     },
-    cursorBlink: true,
     cursorStyle: "block",
   },
   commands: [
@@ -270,6 +268,9 @@ function showModal(title, contentUrl, isPost = false) {
       });
       
       initModalScroll();
+      
+      // make sure the scroll get's reset
+      modalBody.scrollTo({ top: 0 });
     })
     .catch(err => {
       modal.querySelector(".modal-body").innerHTML = 
@@ -295,7 +296,7 @@ function closeModal() {
   
   history.replaceState(null, null, window.location.pathname);
   
-  // Reset command and ensure single prompt
+  // reset command and ensure single prompt
   command = "";
   
   setTimeout(() => {
@@ -336,7 +337,7 @@ function updateNavigationState() {
     );
   }
   
-  // Reset button states first
+  // reset button states first
   prevBtn.disabled = false;
   nextBtn.disabled = false;
   prevBtn.style.transform = "";
@@ -344,7 +345,7 @@ function updateNavigationState() {
   prevBtn.style.boxShadow = "";
   nextBtn.style.boxShadow = "";
   
-  // Apply proper disabled state
+  // apply proper disabled state
   prevBtn.disabled = currentPostIndex <= 0;
   nextBtn.disabled = currentPostIndex >= entriesData.length - 1;
   
@@ -474,6 +475,8 @@ document.addEventListener("keydown", (e) => {
   }
   
   if (document.getElementById("modal").classList.contains("show")) {
+    modelBody = document.getElementById("modalBody")
+
     if (e.key === "ArrowLeft" && !e.ctrlKey && !e.metaKey) {
       e.preventDefault();
       navigatePrev();
@@ -482,6 +485,14 @@ document.addEventListener("keydown", (e) => {
       navigateNext();
     }
   }
+});
+
+window.addEventListener("resize", () => {
+  clearTimeout(window.fitTimeout);
+  window.fitTimeout = setTimeout(() => {
+    fitAddon.fit();
+    terminal.scrollToBottom(); 
+  }, 100);
 });
 
 document.getElementById("modal").addEventListener("click", (e) => {

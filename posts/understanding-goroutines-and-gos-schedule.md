@@ -2,7 +2,7 @@
 
 # WIP
 
-Go's concurrency model is renowned for it's **goroutines**—lightweight concurrent units that are neither OS threads nor traditional green threads. Instead, they represent a unique approach to concurrent programming that combines the best aspects of coroutines with sophisticated runtime scheduling.
+Go's concurrency model is known for it's **goroutines**—lightweight concurrent units that are neither OS threads nor traditional green threads. Instead, they represent a unique approach to concurrent programming that combines aspects of coroutines with sophisticated runtime scheduling.
 
 ## What Are Goroutines Really?
 
