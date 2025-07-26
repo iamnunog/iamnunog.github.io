@@ -37,7 +37,6 @@ class SolarSystemScene {
     this.fpsUpdateInterval = 1000;
     this.lastFPSUpdate = 0;
 
-    // Store zoom level as instance property for consistency
     this.zoomLevel = 10;
 
     this.config = {
@@ -77,6 +76,49 @@ class SolarSystemScene {
     this.init();
   }
 
+  calculateResponsiveZoom() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const aspect = width / height;
+    
+    // Detect device type based on screen width and touch capability
+    const isMobile = width <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const isTablet = width > 768 && width <= 1024 && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    
+    let baseZoom;
+    
+    if (isMobile) {
+      // Mobile devices - zoom out more to fit everything
+      if (width <= 480) {
+        baseZoom = 20; // Small phones
+      } else {
+        baseZoom = 18; // Larger phones
+      }
+    } else if (isTablet) {
+      // Tablet devices - moderate zoom
+      baseZoom = 16;
+    } else {
+      // Desktop - original zoom level
+      baseZoom = 10;
+    }
+    
+    // Adjust based on aspect ratio
+    // For very wide screens, zoom out a bit more
+    if (aspect > 2) {
+      baseZoom *= 1.2;
+    } else if (aspect < 0.8) {
+      // For tall screens (portrait), zoom out more
+      baseZoom *= 1.3;
+    }
+    
+    // Adjust for very small screens
+    if (width < 360 || height < 640) {
+      baseZoom *= 1.2;
+    }
+    
+    return baseZoom;
+  }
+
   init() {
     this.setupScene();
     this.createSun();
@@ -90,6 +132,9 @@ class SolarSystemScene {
 
   setupScene() {
     const aspect = window.innerWidth / window.innerHeight;
+    
+    // Calculate responsive zoom level
+    this.zoomLevel = this.calculateResponsiveZoom();
     const d = this.zoomLevel;
 
     this.camera = new THREE.OrthographicCamera(
@@ -106,15 +151,14 @@ class SolarSystemScene {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      // powerPreference: "high-performance", // Request high-performance GPU
-      stencil: false, // Disable stencil buffer if not needed
+      stencil: false, 
       depth: true,
-      preserveDrawingBuffer: true, // Better performance
+      preserveDrawingBuffer: true, 
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setClearColor(0x000000, 0);
-    this.renderer.sortObjects = false; // Disable if not needed for better performance
+    this.renderer.sortObjects = false; 
     this.container.appendChild(this.renderer.domElement);
   }
 
@@ -148,8 +192,6 @@ class SolarSystemScene {
 
     this.sun = new THREE.Points(geometry, material);
     this.sun.position.y = 2;
-
-    // Enable frustum culling
     this.sun.frustumCulled = true;
 
     this.sunGroup = new THREE.Group();
@@ -181,9 +223,7 @@ class SolarSystemScene {
       color: 0x00ff00, 
       size: 0.15,
       sizeAttenuation: true,
-      // blending: THREE.AdditiveBlending,
       transparent: false,
-      // opacity: 0.9, 
     });
 
     this.earth = new THREE.Points(geometry, material);
@@ -221,26 +261,23 @@ class SolarSystemScene {
     geometry.computeBoundingSphere();
 
     const material = new THREE.PointsMaterial({
-      // color: 0xffffff, // White color
-      color: 0x00ff00, // White color
+      color: 0x00ff00,
       size: 0.1,
       sizeAttenuation: true,
-      // blending: THREE.AdditiveBlending, // Commented out - removes glow
       transparent: false,
-      // opacity: 0.9, // Not needed when transparent is false
     });
 
     this.moon = new THREE.Points(geometry, material);
     this.moon.frustumCulled = true;
 
-    // Create moon orbit group with slight inclination
+    // create moon orbit group with slight inclination
     this.moonOrbitGroup = new THREE.Group();
     this.moonOrbitGroup.rotation.z = (5 * Math.PI) / 180; // 5-degree inclination
     
     this.moon.position.set(this.config.moonOrbitRadius, 0, 0);
     this.moonOrbitGroup.add(this.moon);
     
-    // Add moon orbit to Earth (not to Earth's orbit group)
+    // add moon orbit to Earth (not to Earth's orbit group)
     this.earthOrbitGroup.children[0].add(this.moonOrbitGroup);
 
     this.createMoonOrbitLine();
@@ -264,10 +301,11 @@ class SolarSystemScene {
     geometry.computeBoundingSphere();
 
     const material = new THREE.LineBasicMaterial({
-      color: 0x00ff00, // Green color for Earth's orbit
+      color: 0x00ff00,
       opacity: 0.3,
       transparent: true,
     });
+
     const line = new THREE.Line(geometry, material);
     line.frustumCulled = true;
     this.scene.add(line);
@@ -293,8 +331,7 @@ class SolarSystemScene {
     );
 
     const material = new THREE.LineBasicMaterial({
-      // color: 0xffffff, // White color for Moon's orbit
-      color: 0x00ff00, // White color for Moon's orbit
+      color: 0x00ff00,
       opacity: 0.5,
       transparent: true,
       linewidth: 1,
@@ -416,7 +453,7 @@ class SolarSystemScene {
     this.camera.position.set(cameraDistance, cameraDistance, cameraDistance);
     this.camera.lookAt(0, 2, 0); // look at sun center
 
-    this.setZoom(15);
+    this.setZoom(this.calculateResponsiveZoom());
 
     this.sunRotationSpeed = 0.00005;
     this.earthOrbitSpeed = 0.00002;
@@ -439,6 +476,8 @@ class SolarSystemScene {
   }
 
   onWindowResize() {
+    this.zoomLevel = this.calculateResponsiveZoom();
+    
     const aspect = window.innerWidth / window.innerHeight;
     const d = this.zoomLevel;
 
@@ -463,6 +502,6 @@ class SolarSystemScene {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const solarSystem = new SolarSystemScene("globeContainer");
+  const solarSystem = new SolarSystemScene("animaContainer");
   window.solarSystem = solarSystem;
 });
