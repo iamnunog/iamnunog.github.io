@@ -270,6 +270,8 @@ function showModal(title, contentUrl, isPost = false) {
       });
       
       initModalScroll();
+      modelBody = document.getElementById("modalBody")
+      modelBody.scrollTo({ top: 0 });
     })
     .catch(err => {
       modal.querySelector(".modal-body").innerHTML = 
@@ -474,6 +476,8 @@ document.addEventListener("keydown", (e) => {
   }
   
   if (document.getElementById("modal").classList.contains("show")) {
+    modelBody = document.getElementById("modalBody")
+
     if (e.key === "ArrowLeft" && !e.ctrlKey && !e.metaKey) {
       e.preventDefault();
       navigatePrev();

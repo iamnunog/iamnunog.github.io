@@ -525,6 +525,61 @@ html {
   overflow: hidden;
   position: relative;
   animation: slideIn 0.2s ease-out;
+  border: 2px solid #00DD00;
+  box-shadow:
+    2px 2px 0px #00AA80,
+    3px 4px 0px #008800,
+    4px 6px 0px #006600,
+    0 0 10px 4px rgba(0, 255, 0, 0.5),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.modal-header {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  padding: 12px 16px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #00DD00;
+  font-weight: bold;
+  position: relative;
+  text-shadow:
+    1px 1px 0px #808080,
+    2px 2px 0px #404040,
+    3px 3px 0px #202020;
+  /* min-height: 48px; */
+  gap: 16px;
+}
+
+.modal-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    #00AA00 0%, 
+    #00FF00 50%,
+    #00AA00 100%
+  );
+}
+
+
+/* .modal-content {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 0;
+  width: 60%;
+  max-height: 92vh;
+  overflow: hidden;
+  position: relative;
+  animation: slideIn 0.2s ease-out;
   border: 2px solid #ffffff;
   box-shadow:
     2px 2px 0px #808080,
@@ -564,7 +619,7 @@ html {
   right: 0;
   height: 2px;
   background: linear-gradient(90deg, #ffffff 0%, #808080 100%);
-}
+} */
 
 .modal-nav-controls {
   display: flex;
@@ -611,9 +666,9 @@ html {
   min-width: 32px;
   height: 28px;
   box-shadow:
-    2px 2px 0px #0066cc,
-    4px 4px 0px #004499,
-    6px 6px 0px #002266;
+    1px 1px 0px #0066cc,
+    2px 2px 0px #004499,
+    3px 3px 0px #002266;
   text-shadow:
     1px 1px 0px #0066cc,
     2px 2px 0px #004499;
@@ -663,9 +718,9 @@ html {
   min-width: 32px;
   height: 28px;
   box-shadow:
-    2px 2px 0px #cc6600,
-    4px 4px 0px #994400,
-    6px 6px 0px #662200;
+    1px 1px 0px #cc6600,
+    2px 2px 0px #994400,
+    3px 3px 0px #662200;
   text-shadow:
     1px 1px 0px #cc6600,
     2px 2px 0px #994400;
@@ -712,9 +767,9 @@ html {
   align-items: center;
   justify-content: center;
   box-shadow:
-    2px 2px 0px #aa0000,
-    4px 4px 0px #660000,
-    6px 6px 0px #330000;
+    1px 1px 0px #aa0000,
+    2px 2px 0px #990000,
+    3px 3px 0px #880000;
   text-shadow:
     1px 1px 0px #aa0000,
     2px 2px 0px #660000;
@@ -760,6 +815,7 @@ html {
 }
 
 .modal-body {
+  margin-top: 1px;
   padding: 16px;
   font-size: 18px;
   text-justify: inter-word;
@@ -769,16 +825,6 @@ html {
   max-height: calc(92vh - 120px);
   position: relative;
   text-shadow: 1px 1px 0px #404040;
-}
-
-.modal-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #ffffff 0%, #808080 100%);
 }
 
 .modal-body h2 {
