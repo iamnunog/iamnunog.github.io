@@ -584,27 +584,3 @@ window.onload = () => {
   initTerminal();
   setTimeout(initGlitch, 100);
 };
-
-function pad(num, length) {
-  return num.toString().padStart(length, '0');
-}
-
-function updateClock() {
-  const now = new Date();
-
-  const dd   = pad(now.getDate(), 2);
-  const MM   = pad(now.getMonth() + 1, 2);
-  const YY   = pad(now.getFullYear() % 100, 2);
-  const HH   = pad(now.getHours(), 2);
-  const mm   = pad(now.getMinutes(), 2);
-  const SS   = pad(now.getSeconds(), 2);
-  const mmm  = pad(now.getMilliseconds(), 3);
-
-  const timestamp = dd + MM + YY + HH + mm + SS + mmm;
-
-  document.getElementById('clock').textContent = timestamp;
-
-  requestAnimationFrame(updateClock);
-}
-
-updateClock();

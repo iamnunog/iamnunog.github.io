@@ -42,12 +42,12 @@ class SolarSystemScene {
 
     this.config = {
       sunRadius: 8,
-      sunPoints: 10000,
+      sunPoints: 5000,
       earthRadius: 2,
-      earthPoints: 2000,
+      earthPoints: 1000,
       earthOrbitRadius: 15,
       moonRadius: 0.5,
-      moonPoints: 500,
+      moonPoints: 250,
       moonOrbitRadius: 4,
       gridSize: 40,
       gridDivisions: 50,
@@ -93,12 +93,7 @@ class SolarSystemScene {
     const d = this.zoomLevel;
 
     this.camera = new THREE.OrthographicCamera(
-      -d * aspect,
-      d * aspect,
-      d,
-      -d,
-      1,
-      1000
+      -d * aspect, d * aspect, d, -d, 1, 1000
     );
 
     // Adjust camera position based on aspect ratio for better framing
@@ -111,10 +106,10 @@ class SolarSystemScene {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      powerPreference: "high-performance", // Request high-performance GPU
+      // powerPreference: "high-performance", // Request high-performance GPU
       stencil: false, // Disable stencil buffer if not needed
       depth: true,
-      preserveDrawingBuffer: false, // Better performance
+      preserveDrawingBuffer: true, // Better performance
     });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -144,7 +139,8 @@ class SolarSystemScene {
     geometry.computeBoundingSphere();
 
     const material = new THREE.PointsMaterial({
-      color: 0xffa500, 
+      // color: 0xffa500, 
+      color: 0x00ff00, 
       size: 0.2,
       sizeAttenuation: true,
       transparent: false,
@@ -185,9 +181,9 @@ class SolarSystemScene {
       color: 0x00ff00, 
       size: 0.15,
       sizeAttenuation: true,
-      blending: THREE.AdditiveBlending,
+      // blending: THREE.AdditiveBlending,
       transparent: false,
-      opacity: 0.9, 
+      // opacity: 0.9, 
     });
 
     this.earth = new THREE.Points(geometry, material);
@@ -225,7 +221,8 @@ class SolarSystemScene {
     geometry.computeBoundingSphere();
 
     const material = new THREE.PointsMaterial({
-      color: 0xffffff, // White color
+      // color: 0xffffff, // White color
+      color: 0x00ff00, // White color
       size: 0.1,
       sizeAttenuation: true,
       // blending: THREE.AdditiveBlending, // Commented out - removes glow
@@ -296,7 +293,8 @@ class SolarSystemScene {
     );
 
     const material = new THREE.LineBasicMaterial({
-      color: 0xffffff, // White color for Moon's orbit
+      // color: 0xffffff, // White color for Moon's orbit
+      color: 0x00ff00, // White color for Moon's orbit
       opacity: 0.5,
       transparent: true,
       linewidth: 1,
@@ -314,8 +312,6 @@ class SolarSystemScene {
     this.config.satelliteConfigs.forEach((cfg, index) => {
       const material = new THREE.MeshBasicMaterial({
         color: cfg.color,
-        emissive: cfg.color,
-        emissiveIntensity: 0.5,
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.x = cfg.radius;
