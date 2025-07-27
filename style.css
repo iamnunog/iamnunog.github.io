@@ -60,7 +60,7 @@ html {
 
 #terminal {
   font-family: 'VT323', monospace;
-  font-size: 1em;
+  font-size: 1.1em;
   height: 100%;
   padding-bottom: 44px;
   animation: flicker 0.15s infinite;
@@ -240,9 +240,8 @@ html {
 }
 
 .modal-content {
-  background-color: rgba(0, 0, 0, 0.5);
   font-family: 'VT323', monospace;
-  border-radius: 5px;
+  border-radius: 5px; 
   padding: 0;
   width: 60%;
   max-height: 92vh;
@@ -253,7 +252,7 @@ html {
   box-shadow:
     0 0 10px 4px rgba(0, 255, 0, 0.5),
     inset 0 0 20px rgba(0, 0, 0, 0.5);
-  background: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   z-index: 2;
 }
@@ -323,7 +322,7 @@ html {
   border: 1px solid #ffffff;
   color: #ffffff;
   font-family: 'Courier New', 'Lucida Console', monospace;
-  font-size: 14px;
+  font-size: 1em;
   font-weight: 900;
   cursor: pointer;
   padding: 6px 10px;
@@ -383,8 +382,8 @@ html {
   border: 1px solid #ffffff;
   color: #ffffff;
   font-family: 'Courier New', 'Lucida Console', monospace;
-  font-size: 12px;
-  font-weight: 900;
+  font-size: 1em;
+  font-weight: 200;
   cursor: pointer;
   padding: 6px 8px;
   border-radius: 2px;
@@ -436,7 +435,7 @@ html {
   border: 1px solid #ffffff;
   color: #ffffff;
   font-family: 'Courier New', 'Lucida Console', monospace;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 900;
   cursor: pointer;
   padding: 6px 8px;
@@ -497,9 +496,10 @@ html {
 }
 
 .modal-body {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
   margin-top: 1px;
   padding: 16px;
-  font-size: 18px;
   text-justify: inter-word;
   line-height: 1.2;
   color: #ffffff;
@@ -610,7 +610,7 @@ html {
   -o-tab-size: 2;
   line-height: 1.4 !important;
   font-family: 'Courier New', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
-  font-size: 13px !important;
+  font-size: 15px !important;
   white-space: pre-wrap !important;
 }
 
@@ -676,16 +676,6 @@ html {
   background: rgba(0, 0, 0, 0.9);
   border-top: 1px solid #ffffff;
   z-index: 10;
-}
-
-.modal-progress-bar::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #ffffff 0%, #808080 100%);
 }
 
 .modal-progress-fill {
