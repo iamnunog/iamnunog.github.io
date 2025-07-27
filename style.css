@@ -226,7 +226,7 @@ html {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100hw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -1016,8 +1016,8 @@ html {
   }
 
   .modal-overlay {
-    width: 98vw;
-    height: 84%;
+    width: 100vw;
+    height: 100%;
   }
 
   .modal-content {
@@ -1137,8 +1137,12 @@ html {
     margin-bottom: 0.5em;
   }
 
+  .modal-overlay {
+    width: 100vw;
+    height: 100%;
+  }
+
   .modal-content {
-    margin-top: 30px;
     width: 98%;
   }
 
@@ -1202,10 +1206,6 @@ html {
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-  #terminal {
-    width: 100%;
-  }
-
   .ascii-container {
     font-size: 7px;
   }
