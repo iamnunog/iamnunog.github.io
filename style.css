@@ -1157,6 +1157,7 @@ html {
   }
 
   .modal-content {
+    height: 100%;
     width: 98%;
   }
 
@@ -1195,7 +1196,17 @@ html {
   }
 
   .modal-body {
-    font-size: 11px;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .modal-body h2 {
+    font-size: 15px;
+    padding: 8px;
+  }
+
+  .modal-body h3 {
+    font-size: 14px;
     padding: 8px;
   }
 
