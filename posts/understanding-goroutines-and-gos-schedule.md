@@ -1,12 +1,8 @@
-<!-- # Understanding Goroutines and Go's Scheduler -->
-
-# WIP
-
-Go's concurrency model is known for it's **goroutines**—lightweight concurrent units that are neither OS threads nor traditional green threads. Instead, they represent a unique approach to concurrent programming that combines aspects of coroutines with sophisticated runtime scheduling.
+Go's concurrency model is known for it's **goroutines**—lightweight concurrent units that are neither OS threads nor traditional green threads. Instead, they represent a unique approach to concurrent programming that combines features of coroutines with a sophisticated runtime scheduling system.
 
 ## What Are Goroutines Really?
 
-**Goroutines are a specialized form of coroutine** with deep integration into the Go runtime. Unlike traditional coroutines that require explicit suspension points (`await`, `yield`, etc.), Go abstracts this complexity away:
+**Goroutines are a specialised form of coroutine** with deep integration into the Go runtime. Unlike traditional coroutines that require explicit suspension points (`await`, `yield`, etc.), Go abstracts this complexity away:
 
 - The **Go runtime automatically suspends and resumes goroutines** based on blocking operations (channel I/O, system calls, network operations)
 - Goroutines are **cooperatively scheduled** with **runtime-managed preemption** for long-running tasks
