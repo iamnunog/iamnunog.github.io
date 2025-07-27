@@ -1158,7 +1158,8 @@ html {
   }
   
   #header {
-    margin-top: 0;
+    margin-top: 5px;
+    margin-left: 3px;
   }
 
   .ascii-container {
@@ -1169,6 +1170,11 @@ html {
   #header h1 {
     font-size: 0.9em;
     margin-bottom: 0.5em;
+  }
+
+  #terminal {
+    margin-top: 5px;
+    margin-left: 3px;
   }
 
   .modal-overlay {
