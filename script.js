@@ -47,7 +47,7 @@ const config = {
     contact: [
       "LinkedIn: https://www.linkedin.com/in/nunoalbertogoncalves/",
       "GitHub: https://github.com/iamnunog",
-      "Website: https://iamnunog.github.io",
+      "Website: https://nunog.me",
     ],
   }
 };
