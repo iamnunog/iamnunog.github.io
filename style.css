@@ -105,7 +105,6 @@ html {
   left: 0;
   color: rgba(255, 255, 255, 0.02);
   filter: blur(1px);
-  z-index: 10;
   mix-blend-mode: overlay;
   z-index: 2;
 }
@@ -241,7 +240,8 @@ html {
 }
 
 .modal-content {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'VT323', monospace;
   border-radius: 5px;
   padding: 0;
   width: 60%;
@@ -249,27 +249,25 @@ html {
   overflow: hidden;
   position: relative;
   animation: slideIn 0.2s ease-out;
-  border: 2px solid #00DD00;
+  border: 2px solid #00aa00;
   box-shadow:
-    2px 2px 0px #00AA80,
-    3px 4px 0px #008800,
-    4px 6px 0px #006600,
     0 0 10px 4px rgba(0, 255, 0, 0.5),
     inset 0 0 20px rgba(0, 0, 0, 0.5);
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   z-index: 2;
 }
 
 .modal-header {
-  background-color: rgba(0, 0, 0, 0.9);
+  font-family: 'VT323', monospace;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
   padding: 12px 16px;
   margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #00DD00;
+  border-bottom: 2px solid #00DD00;
   font-weight: bold;
   position: relative;
   text-shadow:
@@ -277,20 +275,6 @@ html {
     2px 2px 0px #404040,
     3px 3px 0px #202020;
   gap: 16px;
-}
-
-.modal-header::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    #00AA00 0%, 
-    #00FF00 50%,
-    #00AA00 100%
-  );
 }
 
 .modal-nav-controls {
@@ -1151,10 +1135,6 @@ html {
   #header {
     margin-top: 0;
   }
-
-  .container {
-    padding: 5px;
-  }  
 
   .ascii-container {
     font-size: 6px;
