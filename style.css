@@ -1153,6 +1153,10 @@ html {
 
 @media (max-width: 480px) {
   
+  .screen-crt {
+    display: none;
+  }
+  
   #header {
     margin-top: 0;
   }
