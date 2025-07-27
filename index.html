@@ -27,13 +27,12 @@
     <div class="screen-overlay-burn"></div>
     <div class="screen-overlay-vhs-tracking"></div>
   </div>
+  
+  <div id="animaContainer" class="animaContainer"></div>
 
   <div class="container">
-    <div id="animaContainer" class="animaContainer"></div>
-
-    <div id="main">
-      <div id="header">
-        <div class="ascii-container" id="asciiArt">
+    <div id="header">
+      <div class="ascii-container" id="asciiArt">
 ███╗   ██╗██╗   ██╗███╗   ██╗ ██████╗ 
 ████╗  ██║██║   ██║████╗  ██║██╔═══██╗
 ██╔██╗ ██║██║   ██║██╔██╗ ██║██║   ██║
@@ -48,40 +47,39 @@
 ╚██████╔╝╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗╚████╔╝ ███████╗███████║
  ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚══██╔╝╚═╝  ╚═╝╚══════╝ ╚═══╝  ╚══════╝╚══════╝
                                 ╚═╝                         COPYRIGHT © 2025
-        </div>
-        <h1>DevOps | Software Engineering | Automation | Security</h1>
       </div>
-      <div id="terminal"></div>
+      <h1>DevOps | Software Engineering | Automation | Security</h1>
     </div>
-    <div id="modal" class="modal-overlay">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-nav-controls">
-            <button class="modal-nav-btn" id="prevBtn" onclick="navigatePrev()" title="Previous Post">
-              &lt;
-            </button>
-            <button class="modal-nav-btn" id="nextBtn" onclick="navigateNext()" title="Next Post">
-              &gt;
-            </button>
-          </div>
-
-          <div class="modal-title-container">
-            <h2 class="modal-title"></h2>
-          </div>
-
-          <div class="modal-utility-controls">
-            <button class="modal-copy-btn" id="copyUrlBtn" onclick="copyPermalink()" title="Copy Permalink">
-              🔗
-            </button>
-            <button class="modal-close" onclick="closeModal()"></button>
-          </div>
+    <div id="terminal"></div>
+  </div>
+  <div id="modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-nav-controls">
+          <button class="modal-nav-btn" id="prevBtn" onclick="navigatePrev()" title="Previous Post">
+            &lt;
+          </button>
+          <button class="modal-nav-btn" id="nextBtn" onclick="navigateNext()" title="Next Post">
+            &gt;
+          </button>
         </div>
 
-        <div class="modal-body" id="modalBody"></div>
-
-        <div class="modal-progress-bar">
-          <div class="modal-progress-fill" id="progressFill"></div>
+        <div class="modal-title-container">
+          <h2 class="modal-title"></h2>
         </div>
+
+        <div class="modal-utility-controls">
+          <button class="modal-copy-btn" id="copyUrlBtn" onclick="copyPermalink()" title="Copy Permalink">
+            🔗
+          </button>
+          <button class="modal-close" onclick="closeModal()"></button>
+        </div>
+      </div>
+
+      <div class="modal-body" id="modalBody"></div>
+
+      <div class="modal-progress-bar">
+        <div class="modal-progress-fill" id="progressFill"></div>
       </div>
     </div>
   </div>
