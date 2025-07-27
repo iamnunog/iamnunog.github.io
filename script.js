@@ -41,7 +41,7 @@ const config = {
     ],
     projects: [
       "Now loading...", 
-      "• nunog.me: homepage."
+      "• nunog.me: homepage https://nunog.me"
     ],
     skills: ["Programming Languages:", "• Python, Golang, Bash, PowerShell"],
     contact: [
