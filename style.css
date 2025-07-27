@@ -66,7 +66,7 @@ html {
 #terminal {
   font-family: 'VT323', monospace;
   font-size: 1.1em;
-  height: 70%;
+  height: 60%;
   padding-bottom: 44px;
   animation: flicker 0.15s infinite;
   border-radius: 5px;
