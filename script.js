@@ -31,14 +31,18 @@ const config = {
       "LinkedIn: https://www.linkedin.com/in/nunoalbertogoncalves",
     ],
     experience: [
-      "XML Int. - Senior Security Engineer at a Tier 1 Investment Bank (June 2025 - Present)",
-      "Morgan Stanley – Development Platforms – Security & Supply Chain Tech Lead (November 2022 –March 2025)",
-      "Morgan Stanley – Security Engineer (April 2018 – November 2022)",
-      "BBC - Information Security Specialist (July 2017 – April 2018)",
-      "BBC – Security Operations Centre Specialist (April 2014 – July 2017)",
-      "CGI – Information Security Consultant (January 2012 – April 2014)",
+      "So far...",
+      "• XML Int. - Senior Security Engineer at a Tier 1 Investment Bank (June 2025 - Present)",
+      "• Morgan Stanley – Development Platforms – Security & Supply Chain Tech Lead (November 2022 –March 2025)",
+      "• Morgan Stanley – Security Engineer (April 2018 – November 2022)",
+      "• BBC - Information Security Specialist (July 2017 – April 2018)",
+      "• BBC – Security Operations Centre Specialist (April 2014 – July 2017)",
+      "• CGI – Information Security Consultant (January 2012 – April 2014)",
     ],
-    projects: ["Now loading..."],
+    projects: [
+      "Now loading...", 
+      "• nunog.me: homepage."
+    ],
     skills: ["Programming Languages:", "• Python, Golang, Bash, PowerShell"],
     contact: [
       "LinkedIn: https://www.linkedin.com/in/nunoalbertogoncalves/",
