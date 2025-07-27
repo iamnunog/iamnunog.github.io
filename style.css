@@ -148,6 +148,36 @@ html {
   z-index: 2;
 }
 
+.screen-crt {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  pointer-events: none;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 50%,     
+    rgba(0, 0, 0, 0.1) 70%,   
+    rgba(0, 0, 0, 0.85) 95%,  
+    rgba(0, 0, 0, 0.9) 100%    
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.1) 70%,
+    rgba(0, 0, 0, 0.85) 95%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+
+  mask-mode: alpha;
+  -webkit-mask-mode: alpha;
+
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
 .screen-overlay {
   position: fixed;
   top: -50%;
