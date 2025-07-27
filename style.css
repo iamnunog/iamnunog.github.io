@@ -35,8 +35,6 @@ html {
 }
 
 .main {
-  margin-top: 5px;
-  margin-left: 5px;
   width: 100%;
   height: 100%;
 }
@@ -1132,13 +1130,6 @@ html {
   
   #header {
     margin-top: 0;
-  }
-
-  .main {
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 100%;
-    height: 100%;
   }
 
   .ascii-container {
