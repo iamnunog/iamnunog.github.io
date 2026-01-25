@@ -1,5 +1,10 @@
 [
   {
+    "title": "Fix Scoop dirty git working directly",
+    "filename": "2026-01-25-fix-scoop-windows-corruption.md",
+    "date": "2026-01-25"
+  },
+  {
     "title": "Yubico Key SSH Setup Password-less Auth",
     "filename": "2024-10-24-yubico-key-SSH-setup-password-less-auth.md",
     "date": "2024-10-24"
