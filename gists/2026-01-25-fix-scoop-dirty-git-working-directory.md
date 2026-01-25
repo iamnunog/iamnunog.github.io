@@ -1,4 +1,4 @@
-**Fix Scoop dirty git working directly**
+**Fix Scoop dirty git working directory**
 
 ```bash
 $ cd $env:USERPROFILE\scoop\buckets\main
